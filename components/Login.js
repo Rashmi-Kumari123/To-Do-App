@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { signIn } from 'next-auth/react'
 import signUpStyle from '@/components/SignUp.module.css'
 
 const Login = () => {
@@ -27,6 +28,17 @@ const Login = () => {
         </form>
         <button className={signUpStyle.btn}>Login</button>
         <button className={signUpStyle.btn1}>Forgot password ?</button>
+        
+        <div style={{ marginTop: '15px', textAlign: 'center' }}>
+          <div style={{ margin: '10px 0', color: '#666' }}>or</div>
+          <button 
+            className={signUpStyle.btn} 
+            onClick={() => signIn('github')}
+            style={{ backgroundColor: '#24292e', width: '100%' }}
+          >
+            Sign in with GitHub
+          </button>
+        </div>
     </div>
   )
 }

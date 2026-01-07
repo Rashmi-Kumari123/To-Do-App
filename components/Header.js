@@ -1,9 +1,12 @@
+'use client'
 import React, { useState } from 'react'
+import { useSession, signOut } from 'next-auth/react'
 import styles from '@/components/Header.module.css'
 import SignUp from '@/components/SignUp'
 import Login from '@/components/Login'
 
 const Header = () => {
+  const { data: session } = useSession();
   const [authmode, setAuthmode] = useState("");
 
   const handleLogin = () => {
@@ -27,7 +30,27 @@ const Header = () => {
         <ul className={styles.list}>
           <li className={`${styles.li} ${styles.media}`}>About</li>
           <li className={`${styles.li} ${styles.media}`}>Contact us</li>
-          <li onClick={handleLogin} className={styles.li}>Log in</li>
+          {session ? (
+            <li className={styles.li} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              {session.user?.image && (
+                <img 
+                  src={session.user.image} 
+                  alt={session.user.name || 'User'} 
+                  style={{ width: '30px', height: '30px', borderRadius: '50%' }}
+                />
+              )}
+              <span>{session.user?.name || session.user?.email}</span>
+              <button 
+                onClick={() => signOut()} 
+                className={styles.li}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0' }}
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <li onClick={handleLogin} className={styles.li}>Log in</li>
+          )}
         </ul>
       </nav>
       {authmode && (

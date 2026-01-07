@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { signIn } from 'next-auth/react'
 import style from '@/components/SignUp.module.css'
 
 const SignUp = () => {
@@ -46,6 +47,17 @@ const SignUp = () => {
       </form>
 
       <button className={style.btn} onClick={handleSubmit}>Sign Up</button>
+      
+      <div style={{ marginTop: '15px', textAlign: 'center' }}>
+        <div style={{ margin: '10px 0', color: '#666' }}>or</div>
+        <button 
+          className={style.btn} 
+          onClick={() => signIn('github')}
+          style={{ backgroundColor: '#24292e', width: '100%' }}
+        >
+          Sign in with GitHub
+        </button>
+      </div>
     </div>
   );
 };

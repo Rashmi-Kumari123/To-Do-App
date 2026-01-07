@@ -16,8 +16,11 @@ Remove any task instantly with the **Remove Task** button.
 ✔️ Mark individual tasks as completed or  
 ✔️ Use the **Mark All Task Done** button to mark every task as done in one click.
 
-🔹 **Auth UI Demo**  
-Navigate between **Login** and **Sign-Up** pages (UI mockup only; no backend authentication implemented).
+🔹 **GitHub OAuth Authentication**  
+Sign in with your GitHub account using OAuth. See `GITHUB_AUTH_SETUP.md` for setup instructions.
+
+🔹 **Email/Password Forms**  
+Login and Sign-Up forms (UI only - GitHub OAuth is the working authentication method).
 
 ---
 
