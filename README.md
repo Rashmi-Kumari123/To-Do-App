@@ -36,7 +36,7 @@ Login and Sign-Up forms (UI only - GitHub OAuth is the working authentication me
 
 Explore the deployed app here:
 
-👉 [To-Do List Live Demo](https://simple-todo-m3uzo6s76-rashmi-kumaris-projects-567088f5.vercel.app/)
+👉 [To-Do List Live Demo](https://simple-todo-app-dusky.vercel.app/))
 
 ---
 
