@@ -95,11 +95,25 @@ Follow these steps to deploy your app to Vercel with GitHub OAuth working:
 
 2. **Click on your OAuth App** (the one you created for local development)
 
-3. **Update the settings**:
-   - **Homepage URL**: `https://your-app-name.vercel.app` (replace with your actual Vercel URL)
-   - **Authorization callback URL**: `https://your-app-name.vercel.app/api/auth/callback/github` (replace with your actual Vercel URL)
+3. **Find your Vercel domain(s)**:
+   - Go to your Vercel project → **Settings** → **Domains**
+   - Note your production domain (e.g., `simple-todo-app-dusky.vercel.app`)
+   - Vercel may also create preview deployment URLs (like `simple-todo-xxxxx-xxxxx.vercel.app`)
 
-4. **Click "Update application"**
+4. **Update the settings**:
+   - **Homepage URL**: `https://your-production-domain.vercel.app` (use your main Vercel domain)
+   - **Authorization callback URL**: You can add multiple callback URLs (one per line):
+     ```
+     https://your-production-domain.vercel.app/api/auth/callback/github
+     https://*.vercel.app/api/auth/callback/github
+     ```
+     - The first line is your main production domain
+     - The second line with `*` allows all Vercel preview deployments (if GitHub supports wildcards)
+     - **OR** add each specific preview URL you see in the error message
+
+5. **Important**: If you see a `redirect_uri` mismatch error, copy the exact URL from the error and add it to your callback URLs list
+
+6. **Click "Update application"**
 
 ### Step 3: Add Environment Variables in Vercel
 
@@ -152,7 +166,7 @@ After adding environment variables, you need to trigger a new deployment:
 
 - **Keep your `.env.local` file for local development** - it won't affect production
 - **The same GitHub OAuth App** can work for both local and production (just update the callback URL)
-- **Or create a separate OAuth App** for production if you prefer
+- **Or create a separate OAuth App** for production if you preferttps://simple-todo-app-dusky.vercel.app/api/auth/callback/github
 - **Environment variables in Vercel** override any `.env.local` file in production
 - **After updating environment variables**, always redeploy for changes to take effect
 
